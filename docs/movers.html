@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CS2 Skin Movers & Deals — live board | SkinProbe</title>
+<meta name="description" content="Live board of the biggest CS2 skin price movers and deals right now — skins trading below their recent baseline (buy signals) and sudden spikes. Real Steam Market data, updated hourly.">
+<meta name="keywords" content="cs2 skin movers, csgo skin deals, biggest skin price drops, cs2 skin price tracker, skin deal finder">
+<meta property="og:title" content="CS2 Skin Movers & Deals — live board">
+<meta property="og:description" content="The biggest skin price moves right now — buy-the-dip deals and spikes. Live Steam data.">
+<style>
+ :root{--muted:#8b93a7;--line:#20242e;--accent:#7c6cff;--accent2:#9d90ff;--bg:#0b0d12;--card:#141822;--green:#37d67a;--red:#ff5c6c}
+ *{box-sizing:border-box;margin:0;padding:0}
+ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;color:#e7eaf0;line-height:1.55;background:var(--bg)}
+ .wrap{max-width:820px;margin:0 auto;padding:0 22px}
+ a{color:var(--accent2);text-decoration:none}
+ nav{border-bottom:1px solid var(--line)}nav .wrap{display:flex;align-items:center;justify-content:space-between;height:62px;max-width:1000px}
+ .logo{font-weight:800;font-size:19px;color:#fff}.logo span{color:var(--accent2)}
+ header{padding:46px 0 10px}
+ h1{font-size:32px;letter-spacing:-.02em;margin-bottom:8px}
+ .sub{color:var(--muted);font-size:16px}
+ .upd{color:var(--muted);font-size:13px;margin-top:6px}
+ table{width:100%;border-collapse:collapse;margin-top:22px;font-size:14.5px}
+ th,td{padding:11px 12px;text-align:left;border-bottom:1px solid var(--line)}
+ th{font-size:12px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted)}
+ td.n{text-align:right;font-variant-numeric:tabular-nums}
+ .deal{color:var(--green);font-weight:700}.spike{color:var(--red);font-weight:700}
+ .pill{font-size:11px;font-weight:700;padding:2px 8px;border-radius:999px}
+ .pill.deal{background:rgba(55,214,122,.14);color:var(--green)}.pill.spike{background:rgba(255,92,108,.14);color:var(--red)}
+ .empty{background:var(--card);border:1px solid var(--line);border-radius:13px;padding:34px;text-align:center;color:var(--muted);margin-top:26px}
+ .cta{display:inline-block;background:var(--accent);color:#fff;font-weight:600;padding:13px 26px;border-radius:11px;margin-top:26px}
+ .banner{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:11px;padding:15px 18px;margin-top:24px;font-size:15px;color:var(--muted)}
+ .banner b{color:#e7eaf0}
+ footer{border-top:1px solid var(--line);padding:28px 0;color:var(--muted);font-size:13px;text-align:center;margin-top:56px}
+</style>
+</head>
+<body>
+<nav><div class="wrap"><a class="logo" href="./">Skin<span>Probe</span></a><a href="./#join" style="font-size:14px;font-weight:600">Get alerts →</a></div></nav>
+<div class="wrap">
+<header>
+  <h1>CS2 skin movers & deals — right now</h1>
+  <p class="sub">Skins trading below their recent baseline (buy signals 🟢) and sudden spikes (🔴). Live Steam Market data.</p>
+  <p class="upd" id="upd"></p>
+</header>
+<div id="board"></div>
+<div class="banner">Want these on <b>your</b> skins, pushed to Discord the moment they cross your buy/sell target? <a href="./#join">Join the free beta →</a></div>
+</div>
+<footer>SkinProbe · live CS2 skin price monitoring · independent, not affiliated with Valve or Steam · data from the public Steam Community Market</footer>
+<script>
+function money(n){return "$"+Number(n).toFixed(2);}
+fetch('movers.json?t='+Date.now()).then(r=>r.json()).then(d=>{
+  const upd=d.updated?new Date(d.updated*1000).toLocaleString():'';
+  document.getElementById('upd').textContent=(d.count_tracked?('Tracking '+d.count_tracked+' skins · '):'')+(upd?('updated '+upd):'');
+  const m=(d.movers||[]);
+  const b=document.getElementById('board');
+  if(!m.length){
+    b.innerHTML='<div class="empty">📊 <b>Collecting price history…</b><br>The board lights up as soon as the market moves against its baseline. Check back shortly — or <a href="./#join">get alerts on your own skins now</a>.</div>';
+    return;
+  }
+  let rows='';
+  for(const x of m){
+    const cls=x.kind==='deal'?'deal':'spike';
+    rows+=`<tr><td><b>${x.name}</b></td><td class="n">${money(x.price)}</td>`+
+          `<td class="n ${cls}">${x.dev>0?'+':''}${x.dev}%</td>`+
+          `<td class="n">${x.listings}</td>`+
+          `<td><span class="pill ${cls}">${x.kind==='deal'?'🟢 buy dip':'🔴 spike'}</span></td></tr>`;
+  }
+  b.innerHTML='<table><thead><tr><th>Skin</th><th style="text-align:right">Price</th><th style="text-align:right">vs baseline</th><th style="text-align:right">Listed</th><th>Signal</th></tr></thead><tbody>'+rows+'</tbody></table>';
+}).catch(()=>{document.getElementById('board').innerHTML='<div class="empty">Board is warming up — check back shortly.</div>';});
+</script>
+</body>
+</html>
