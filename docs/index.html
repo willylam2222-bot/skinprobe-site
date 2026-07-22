@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SkinProbe — Live price alerts for CS2 skin traders</title>
+<meta name="description" content="Your skins move like a market. SkinProbe watches CS2 skin prices live and pings your Discord the moment one hits your buy/sell target — or when a real deal appears. Not a one-time check. Ongoing, per-item, every hour.">
+<meta name="keywords" content="cs2 skin price tracker, csgo skin price alert, skin trading tool, steam market price monitor, skin deal finder, skin portfolio tracker">
+<meta property="og:title" content="SkinProbe — Live CS2 skin price alerts">
+<meta property="og:description" content="Know the second your skins move. Watchlist alerts, deal detection & portfolio tracking, pushed to Discord.">
+<style>
+ :root{--ink:#0e1116;--muted:#8b93a7;--line:#20242e;--accent:#7c6cff;--accent2:#9d90ff;--bg:#0b0d12;--card:#141822;--green:#37d67a;--red:#ff5c6c}
+ *{box-sizing:border-box;margin:0;padding:0}
+ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;color:#e7eaf0;line-height:1.6;background:var(--bg)}
+ .wrap{max-width:760px;margin:0 auto;padding:0 22px}
+ a{color:var(--accent2)}
+ nav{border-bottom:1px solid var(--line)}
+ nav .wrap{display:flex;align-items:center;justify-content:space-between;height:62px;max-width:1000px}
+ .logo{font-weight:800;font-size:19px;letter-spacing:-.02em;color:#fff;text-decoration:none}.logo span{color:var(--accent2)}
+ header{text-align:center;padding:64px 0 40px}
+ .tag{display:inline-block;background:rgba(124,108,255,.14);color:var(--accent2);font-size:13px;font-weight:600;padding:5px 13px;border-radius:999px;margin-bottom:20px}
+ h1{font-size:44px;line-height:1.1;letter-spacing:-.03em;max-width:660px;margin:0 auto 18px}
+ h1 span{color:var(--accent2)}
+ .sub{font-size:19px;color:var(--muted);max-width:560px;margin:0 auto 30px}
+ .cta{display:inline-block;background:var(--accent);color:#fff;text-decoration:none;font-weight:600;padding:14px 28px;border-radius:11px;font-size:17px}
+ .cta:hover{background:var(--accent2)}
+ .demo{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px 22px;margin:38px auto 0;max-width:560px;text-align:left;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:14px}
+ .demo .row{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--line)}
+ .demo .row:last-child{border:none}
+ .buy{color:var(--green);font-weight:700}.sell{color:var(--red);font-weight:700}
+ h2{font-size:26px;margin:56px 0 8px;letter-spacing:-.02em;text-align:center}
+ .grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:26px}
+ .card{background:var(--card);border:1px solid var(--line);border-radius:13px;padding:20px}
+ .card h3{font-size:16px;margin-bottom:6px}.card p{font-size:14.5px;color:var(--muted)}
+ .steps{counter-reset:s;max-width:560px;margin:24px auto 0}
+ .steps li{list-style:none;position:relative;padding:12px 0 12px 44px;border-bottom:1px solid var(--line)}
+ .steps li:before{counter-increment:s;content:counter(s);position:absolute;left:0;top:12px;width:28px;height:28px;background:var(--accent);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px}
+ .vs{background:var(--card);border:1px solid var(--line);border-radius:13px;padding:22px;margin-top:26px;font-size:15px;color:var(--muted)}
+ .vs b{color:#e7eaf0}
+ footer{border-top:1px solid var(--line);padding:30px 0;color:var(--muted);font-size:13px;text-align:center;margin-top:64px}
+ .note{color:var(--muted);font-size:13px;text-align:center;margin-top:14px}
+</style>
+</head>
+<body>
+<nav><div class="wrap"><a class="logo" href="./">Skin<span>Probe</span></a><a href="#join" style="font-size:14px;font-weight:600">Join beta →</a></div></nav>
+<div class="wrap">
+<header>
+  <span class="tag">🎯 LIVE · CS2 SKIN PRICE ALERTS</span>
+  <h1>Your skins move like a market.<br><span>SkinProbe tells you the second they do.</span></h1>
+  <p class="sub">Set buy/sell targets on the skins you hold or hunt. SkinProbe watches the Steam Market live and pings your Discord the moment one crosses your line — or when a real deal shows up.</p>
+  <a class="cta" href="#join">Get alerts on your skins — free beta</a>
+
+  <div class="demo">
+    <div style="color:var(--muted);margin-bottom:8px">#skinprobe-alerts</div>
+    <div class="row"><span><span class="buy">🟢 BUY</span> AK-47 | Aphrodite (FT)</span><span>$23.18 <span style="color:var(--muted)">(≤ your $24)</span></span></div>
+    <div class="row"><span><span class="sell">🔴 SELL</span> USP-S | Printstream (FT)</span><span>$68.40 <span style="color:var(--muted)">(≥ your $68)</span></span></div>
+    <div class="row"><span>🟢 Deal: ★ Karambit | Doppler</span><span>-11% vs baseline</span></div>
+    <div class="row" style="color:var(--muted)">Portfolio: $2,480 · +3.2% this week</div>
+  </div>
+</header>
+
+<h2>Why traders use it</h2>
+<div class="grid">
+  <div class="card"><h3>🎯 Watchlist alerts</h3><p>Buy/sell target per skin. Crosses your line → instant Discord ping. No refreshing the market 40 times a day.</p></div>
+  <div class="card"><h3>💸 Deal detection</h3><p>Flags skins trading below their own recent baseline — with real listings behind them. Buy the dip before it bounces.</p></div>
+  <div class="card"><h3>📈 Spike & squeeze</h3><p>Sudden jumps (sell / momentum) and listings drying up (supply squeeze — price about to move).</p></div>
+  <div class="card"><h3>💼 Portfolio tracking</h3><p>Your holdings valued live, tracked over time. Know what your inventory is actually worth today.</p></div>
+</div>
+
+<h2>How it works</h2>
+<ol class="steps">
+  <li>Send your skins + buy/sell targets, and a Discord webhook.</li>
+  <li>SkinProbe sweeps the live market on a schedule and checks your list.</li>
+  <li>Anything crosses a target or a deal appears → you get pinged. That's it.</li>
+</ol>
+
+<div class="vs">
+  <b>"Can't I just ask ChatGPT?"</b> — No. ChatGPT can guess a rough range; it has no live per-item price, can't watch anything, and can't ping you tomorrow. SkinProbe pulls the <b>actual current price</b> of <b>your exact skins</b>, <b>every hour</b>, and <b>alerts you</b>. That's the whole difference — and it's why one look is worthless but ongoing eyes are worth paying for.
+</div>
+
+<h2 id="join">Join the free beta</h2>
+<p class="note">Beta is free while we dial it in. Email your skin list (with buy/sell targets) + a Discord webhook — you'll be watched within a day.</p>
+<div style="text-align:center;margin-top:18px">
+  <a class="cta" href="mailto:PriceProbe_sg@proton.me?subject=SkinProbe%20beta%20-%20watch%20my%20skins&body=Skins%20%2B%20targets%20(one%20per%20line%2C%20e.g.%20AK-47%20%7C%20Asiimov%20(Field-Tested)%20buy%2055%20sell%2065)%3A%0A-%20%0A-%20%0A%0AMy%20Discord%20webhook%20URL%3A%20">📩 Email my watchlist → get alerts</a>
+</div>
+<p class="note" style="margin-top:16px">Not on Discord? Say so in the email — email alerts work too.</p>
+</div>
+<footer>SkinProbe · live CS2 skin price monitoring &amp; alerts · independent, not affiliated with Valve or Steam · prices from the public Steam Community Market</footer>
+</body>
+</html>
