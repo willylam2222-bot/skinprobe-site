@@ -60,7 +60,7 @@ fetch('movers.json?t='+Date.now()).then(r=>r.json()).then(d=>{
   let rows='';
   for(const x of m){
     const cls=x.kind==='deal'?'deal':'spike';
-    rows+=`<tr><td><b>${x.name}</b></td><td class="n">${money(x.price)}</td>`+
+    rows+=`<tr><td><b>${x.name}</b></td><td class="n">${money(x.price)}${x.median?' <span style="color:#8b93a7">/ '+money(x.median)+' med</span>':''}</td>`+
           `<td class="n ${cls}">${x.dev>0?'+':''}${x.dev}%</td>`+
           `<td class="n">${x.listings}</td>`+
           `<td><span class="pill ${cls}">${x.kind==='deal'?'🟢 buy dip':'🔴 spike'}</span></td></tr>`;
