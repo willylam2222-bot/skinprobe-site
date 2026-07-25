@@ -66,6 +66,15 @@ fetch('movers.json?t='+Date.now()).then(r=>r.json()).then(d=>{
           `<td><span class="pill ${cls}">${x.kind==='deal'?'🟢 buy dip':'🔴 spike'}</span></td></tr>`;
   }
   b.innerHTML='<table><thead><tr><th>Skin</th><th style="text-align:right">Price</th><th style="text-align:right">vs baseline</th><th style="text-align:right">Listed</th><th>Signal</th></tr></thead><tbody>'+rows+'</tbody></table>';
+  // share the biggest deal — turns any visitor into amplification
+  const deals=m.filter(x=>x.kind==='deal');
+  if(deals.length){
+    const top=deals[0];
+    const txt='🟢 CS2 deal watch — '+top.name+' is '+money(top.price)+', ~'+Math.abs(top.dev)+'% under its Steam median. Live board of skins under median:';
+    const url='https://willylam2222-bot.github.io/skinprobe-site/movers.html';
+    const tw='https://twitter.com/intent/tweet?text='+encodeURIComponent(txt)+'&url='+encodeURIComponent(url)+'&hashtags=CS2,csgoskins,skintrading';
+    b.insertAdjacentHTML('beforeend','<div style="margin-top:18px;text-align:center"><a class="cta" href="'+tw+'" target="_blank" rel="noopener">📢 Share today’s top deal</a></div>');
+  }
 }).catch(()=>{document.getElementById('board').innerHTML='<div class="empty">Board is warming up — check back shortly.</div>';});
 </script>
 </body>
